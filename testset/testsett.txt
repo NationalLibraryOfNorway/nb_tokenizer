@@ -11,6 +11,7 @@ The response rate was .4 % for the children included in paper
 På begynnelsen av 1900-tallet ble internasjonal høyhastighetskommunikasjon gjort med morsekode via telegraflinjer,
 i en lang og livskraftig tradisjon innen norsk 1900-talls maleri. Vi kjenner igjen naturfølelsen, den skolerte
 
+
 Initialer og tegn:
 Jess ... pokker heller! Nå hadde hun åpnet slusene, og han hadde kommet strømmende inn med stor kraft
 Jess...pokker heller! Nå hadde hun åpnet slusene, og han hadde kommet strømmende inn med stor kraftHun kunne liksom ikke førestille seg ham andre steder enn i L. A. - Hvordan var det?
@@ -24,6 +25,7 @@ Dette er tekst før §5 og etter paragraftegn.
 Dette er tekst før §5-2 og etter paragraftegn.
 Dette er tekst før §§5 og etter paragraftegn.
 Dette er tekst før §§5-2 og etter paragraftegn.
+
 
 Flere konkordanser med tall:
 NV 0=100 000 • A 50/s=100 000 • (1+Q, °5)=
