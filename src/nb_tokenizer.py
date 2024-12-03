@@ -347,7 +347,7 @@ LGJ: juni 2014
 
 num = r"\d+(?:\.(?! [A-ZÆØÅ]))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
- med punktum bare om neste påfølgende tegn (etter blank) er stor bokstav.
+ med punktum bare om neste påfølgende tegn (etter blank) ikke er stor bokstav.
 
 Denne må justeres for samisk og andre språk med større utvalg av store bokstaver.
 Det vil sannsynligvis ikke ha så veldig stor betydning for utfallet.
