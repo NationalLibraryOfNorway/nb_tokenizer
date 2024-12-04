@@ -55,8 +55,8 @@ import time
 fork = [
     "L\\.",
     "[Aa]/[Ss]",
-    "[aA]b\\.prov\\.",  
-    "[aA]plf\\.",
+    "[Aa]b\\.prov\\.",  
+    "[Aa]plf\\.",
     "[Aa][.]?[Dd]\\.",
     "a[.]?l\\.",
     "a[.]?m\\.",
