@@ -222,7 +222,7 @@ fork = [
     "[Mm]ax\\.",
     "[Mm]d\\.",
     "[Mm]ed\\.",
-    "Meld\\.",      #skal kun ha stor bokstav
+    "Meld\\.",      #skal ikke ha liten forbokstav
     "[Mm]ek\\.",
     "[Mm]fl\\.",
     "[Mm]ht\\.",
