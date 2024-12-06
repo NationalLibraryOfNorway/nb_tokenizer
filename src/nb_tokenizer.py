@@ -374,7 +374,7 @@ LGJ: juni 2014
 """
 
 
-num = r"\d+(?:\.(?! [A-ZÆØÅ]))?"
+num = r"\d+(?:\.(?!\s[A-ZÆØÅ]))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
  med punktum bare om neste påfølgende tegn (etter blank) ikke er stor bokstav.
 
@@ -412,7 +412,7 @@ num5 = r"\d+(?:[-–]\w+)"
 num = "|".join([num0, num1, num2, num3, num4, num5, num])
 
 
-parnum0 = r"(?<=§ )\d+(?:[-–—]\d+)*|(?<=§)\d+(?:[-–—]\d+)*"
+parnum0 = r"(?<=§\s)\d+(?:[-–—]\d+)*|(?<=§)\d+(?:[-–—]\d+)*"
 """Paragraftegn kan komme i en eller to (eller flere?) utgaver.
 
 Tolk tall etter § som rene tall uten punktum,
@@ -420,14 +420,14 @@ men også med bindestrek så i § 2-5  blir 2-5 et token.
 """
 
 
-parnum = r"(?<=§ )\d+|(?<=§)\d+"
+parnum = r"(?<=§\s)\d+|(?<=§)\d+"
 """Tolk tall etter § som heltall uten punktum."""
 
 paragrafer = "§+"
 """§ eller §§ brukes i lovtekster."""
 
 
-initialer = r"(?<=(?: |\.))[A-ZÆØÅ]\."
+initialer = r"(?<=(?:\s|\.))[A-ZÆØÅ]\."
 word = r"\w+[-\d.@\w]*[\w\d]+-?"
 word = "|".join([initialer, word])
 """Ord er alt som ikke inneholder skillende skilletegn.
