@@ -374,7 +374,7 @@ LGJ: juni 2014
 """
 
 
-num = r"\d+(?:\.(?!\s[A-ZÆØÅ]))?"
+num = r"\d+(?:\.(?!\s[A-ZÀ-Ž]))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
  med punktum bare om neste påfølgende tegn (etter blank) ikke er stor bokstav.
 
@@ -427,7 +427,7 @@ paragrafer = "§+"
 """§ eller §§ brukes i lovtekster."""
 
 
-initialer = r"(?<=(?:\s|\.))[A-ZÆØÅ]\."
+initialer = r"(?<=(?:\s|\.))[A-ZÀ-Ž]\."
 word = r"\w+[-\d.@\w]*[\w\d]+-?"
 word = "|".join([initialer, word])
 """Ord er alt som ikke inneholder skillende skilletegn.
