@@ -32,10 +32,13 @@ og Hendry L. B. (2003). Utviklingspsykologi i praksis.
 , Jørgensen, Č., Dunlop, Á.Đ., Varpe, 0., Boukal,
 Han er slank og mager; j & vnaldrende med Tesman men ser ældre og noget udlevet ud.
 Forskerne har funnet ut at denne kvinna fikk 86 % av maten fra strand eller sjø,
-Dette er tekst før §5 og etter paragraftegn.
-Dette er tekst før §5-2 og etter paragraftegn.
-Dette er tekst før §§5 og etter paragraftegn.
-Dette er tekst før §§5-2 og etter paragraftegn.
+jf. §§ 10 og 15
+se §§ 10 til 20.
+§ 126 bokstav a
+utlendingsloven § 21.
+forskriftens § 15-1
+forskriftens §§§§§ 15-1
+§ 15-1 i forskrifta
 
 
 Flere konkordanser med tall:
