@@ -373,8 +373,6 @@ Numeriske uttrykk er alt som er bygd opp av tall, komma og punktum og blanke.
 LGJ: juni 2014
 """
 
-epost = r"\w+[-.+!#$%&'*/=?^(){}[\]\w]*@\w+[-.\w]*\.\w+"
-
 
 num = r"\d+(?:\.(?!\s[A-ZÆØÅ]))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
@@ -427,6 +425,17 @@ parnum = r"(?<=§\s)\d+|(?<=§)\d+"
 
 paragrafer = "§+"
 """§ eller §§ brukes i lovtekster."""
+
+
+epost = r"\w+[-.+!#$%&'*/=?^(){}[\]\w]*@\w+[-.\w]*\.\w+"
+"""E-post består av et brukernavn, fulgt av @ og et domene med punktum.
+
+Brukernavnet må begynne på et alfanumerisk tegn, men kan
+inneholde spesialtegn.
+
+Domenet må begynne på et alfanumerisk tegn, men kan
+inneholde bindestrek og punktum.
+"""
 
 
 initialer = r"(?<=(?:\s|\.))[A-ZÆØÅ]\."
