@@ -87,6 +87,13 @@ Dette er tekst før Firstname.Lastname+extra@gmail.com og etter e-poster.
 Dette er tekst før weird-email@odd-domain.io og etter e-poster.
 Dette er tekst før info@business.consulting og etter e-poster.
 Dette er tekst før user_name@hyphen-domain.com og etter e-poster.
+support@example.com er vår offisielle e-postadresse.
+contact_us@domain.com bør brukes for tekniske henvendelser.
+admin@company.io håndterer eskaleringer.
+Du kan nå oss på e-postadressen helpdesk@service.net.
+Send søknaden din til apply@careers.org.
+For klager, skriv til complaints.department@company.org.
+Hvis jeg har en klage, kan jeg skrive til complaints.department@company.org?
 
 Ugyldige e-poster:
 Dette er tekst før invalid.email.com og etter e-poster.
