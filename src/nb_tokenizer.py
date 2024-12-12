@@ -373,6 +373,8 @@ Numeriske uttrykk er alt som er bygd opp av tall, komma og punktum og blanke.
 LGJ: juni 2014
 """
 
+epost = r"\w+[-.+!#$%&'*/=?^(){}[\]\w]*@\w+[-.\w]*\.\w+"
+
 
 num = r"\d+(?:\.(?!\s[A-ZÆØÅ]))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
@@ -446,7 +448,7 @@ catchall = r"\S"  # alle tegn som ikke er blanke blir til et eget token
 """
 
 
-regex = fork + [parnum0, parnum, num, paragrafer, word, catchall]
+regex = fork + [epost, parnum0, parnum, num, paragrafer, word, catchall]
 regex = re.compile("|".join(regex))
 """Kombiner alle uttrykkene i rekkefølge og kompiler dem.
 
