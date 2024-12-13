@@ -420,8 +420,8 @@ men også med bindestrek så i § 2-5  blir 2-5 et token.
 """
 
 
-parnum = r"(?<=§\s)\d+|(?<=§)\d+"
-"""Tolk tall etter § som heltall uten punktum."""
+#parnum = r"(?<=§\s)\d+|(?<=§)\d+"
+#"""Tolk tall etter § som heltall uten punktum."""
 
 paragrafer = "§+"
 """§ eller §§ brukes i lovtekster."""
@@ -457,7 +457,7 @@ catchall = r"\S"  # alle tegn som ikke er blanke blir til et eget token
 """
 
 
-regex = fork + [epost, parnum0, parnum, num, paragrafer, word, catchall]
+regex = fork + [epost, parnum0, num, paragrafer, word, catchall]    #parnum kommentert ut
 regex = re.compile("|".join(regex))
 """Kombiner alle uttrykkene i rekkefølge og kompiler dem.
 
