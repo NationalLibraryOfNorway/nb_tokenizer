@@ -383,7 +383,7 @@ Det vil sannsynligvis ikke ha så veldig stor betydning for utfallet.
 """
 
 
-num0 = r"\d{1,3}(?:\s\d\d\d(?!\d))+"
+num0 = r"\d{1,3}(?:\s\d{3}(?!\d))+"
 """F.eks. 10 000, tillater ikke punktum. 
 
 Tokeniserer tall med mellomrom der de forekommer.
@@ -402,7 +402,7 @@ num3 = r"\.\d+"
 """Det var .2 prosent økning."""
 
 
-num4 = r"\.\.\.+"
+num4 = r"\.{3,}"
 """Tre eller flere punktum blir ett token."""
 
 num5 = r"\d+(?:[-–]\w+)"
