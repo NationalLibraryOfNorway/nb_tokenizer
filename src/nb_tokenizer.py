@@ -439,7 +439,7 @@ inneholde bindestrek og punktum.
 
 
 initialer = r"(?<=(?:\s|\.))[A-ZÆØÅ]\."
-word = r"\w+[-\d.@\w]*[\w\d]+-?"
+word = r"\w+[-.@\w]*[\w]+-?"
 word = "|".join([initialer, word])
 """Ord er alt som ikke inneholder skillende skilletegn.
 
