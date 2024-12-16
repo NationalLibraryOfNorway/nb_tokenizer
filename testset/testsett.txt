@@ -108,15 +108,20 @@ Dette er tekst før user@domain.invalid-tld123 og etter e-poster.
 
 
 URL-er:
-Dette er tekst før https://www.google.com og etter url-er.
-Dette er tekst før https://website.com/subfolder/file.html og etter url-er.
-Dette er tekst før http://site.org/page?name=john&age=30 og etter url-er.
-Dette er tekst før https://site.com/page#header2 og etter url-er.
-Dette er tekst før https://example.com:443/path og etter url-er.
-Dette er tekst før https://example.com/query?name=foo+bar&data=123%20test og etter url-er.
-Dette er tekst før https://192.168.1.1:8080/resource og etter url-er.
-Dette er tekst før https://example.рф og etter url-er.
-Dette er tekst før https://mywebsite.tech og etter url-er.
+ftp://ftp.example.org/resource/file.txt
+https://example.com:8080/path/to/resource?query=123&search=hello#section
+http://www.example.com/~user/file?var=value&other=val#anchor
+https://example.com/a-long-url_with-various.characters-and-symbols/
+example.com/path/without/protocol
+example.org
+127.0.0.1:3000/path/to/resource
+Check out the latest updates on blog.example.org!
+Our FTP server is located at ftp://ftp.example.com/files. Please download the latest version.
+Have you seen this link: http://example.com/special?query=value? It’s amazing!
+I came across this link https://example.com/resource? but I’m not sure what it does.
+Here's a tricky one: sub-domain.example.com/path#frag embedded in a sentence.
+https://start.example.com/path?query=test#frag is where you should start.
+To finish, please visit example.net/finish-here.
 
 Ugyldige URL-er:
 Dette er tekst før example.com/path og etter url-er.
