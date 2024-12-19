@@ -441,20 +441,29 @@ inneholde bindestrek og punktum.
 url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~:/#\[@$&(*+;=%\w](?=[.,?!')\]\"]*\s)"
 """URL som starter med http, https eller ftp. 
 
-URL-en kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
-tegn eller et av de spesifiserte spesialtegnene. URL-en følges av mulig tegnsetting 
+Kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
+tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
 og mellomrom.
 """
 
 url2 = r"(?:WWW|www)\.\S+[-~:/#\[@$&(*+;=%\w](?=[.,?!')\]\"]*\s)"
 """URL som starter med www. 
 
-URL-en kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
-tegn eller et av de spesifiserte spesialtegnene. URL-en følges av mulig tegnsetting 
+Kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
+tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
 og mellomrom.
 """
 
-url = "|".join([url1, url2])
+url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*\s)"
+"""Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www.
+
+Må begynne med alfanumeriske tegn eller bindestrek og et punktum. Siste tegn må være
+et alfanumerisk tegn eller et av de spesifiserte spesialtegnene. Følges av mulig 
+tegnsetting og mellomrom.
+"""
+
+url = "|".join([url1, url2, url3])
+
 
 
 initialer = r"(?<=(?:\s|\.))[A-ZÆØÅ]\."
