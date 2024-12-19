@@ -438,28 +438,28 @@ inneholde bindestrek og punktum.
 """
 
 
-url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#\[@$&(*+=%\w](?=[.,:;?!')\]\"]*\s)"
+url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#\[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med http, https eller ftp. 
 
 Kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
 tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
-og mellomrom.
+og mellomrom eller linjeslutt.
 """
 
-url2 = r"(?:WWW|www)\.\S+[-~/#\[@$&(*+=%\w](?=[.,:;?!')\]\"]*\s)"
+url2 = r"(?:WWW|www)\.\S+[-~/#\[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med www. 
 
 Kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
 tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
-og mellomrom.
+og mellomrom eller linjeslutt.
 """
 
-url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*\s)"
+url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www.
 
 Må begynne med alfanumeriske tegn eller bindestrek og et punktum. Siste tegn må være
 et alfanumerisk tegn eller et av de spesifiserte spesialtegnene. Følges av mulig 
-tegnsetting og mellomrom.
+tegnsetting og mellomrom eller linjeslutt.
 """
 
 url = "|".join([url1, url2, url3])
