@@ -438,7 +438,7 @@ inneholde bindestrek og punktum.
 """
 
 
-url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~:/#\[@$&(*+;=%\w](?=[.,?!')\]\"]*\s)"
+url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#\[@$&(*+=%\w](?=[.,:;?!')\]\"]*\s)"
 """URL som starter med http, https eller ftp. 
 
 Kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
@@ -446,7 +446,7 @@ tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting
 og mellomrom.
 """
 
-url2 = r"(?:WWW|www)\.\S+[-~:/#\[@$&(*+;=%\w](?=[.,?!')\]\"]*\s)"
+url2 = r"(?:WWW|www)\.\S+[-~/#\[@$&(*+=%\w](?=[.,:;?!')\]\"]*\s)"
 """URL som starter med www. 
 
 Kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
