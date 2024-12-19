@@ -419,9 +419,9 @@ Tolk tall etter § som rene tall uten punktum,
 men også med bindestrek så i § 2-5  blir 2-5 et token.
 """
 
-
 #parnum = r"(?<=§\s)\d+|(?<=§)\d+"
 #"""Tolk tall etter § som heltall uten punktum."""
+
 
 paragrafer = "§+"
 """§ eller §§ brukes i lovtekster."""
@@ -436,6 +436,25 @@ inneholde spesialtegn.
 Domenet må begynne på et alfanumerisk tegn, men kan
 inneholde bindestrek og punktum.
 """
+
+
+url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~:/#\[@$&(*+;=%\w](?=[.,?!')\]\"]*\s)"
+"""URL som starter med http, https eller ftp. 
+
+URL-en kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
+tegn eller et av de spesifiserte spesialtegnene. URL-en følges av mulig tegnsetting 
+og mellomrom.
+"""
+
+url2 = r"(?:WWW|www)\.\S+[-~:/#\[@$&(*+;=%\w](?=[.,?!')\]\"]*\s)"
+"""URL som starter med www. 
+
+URL-en kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
+tegn eller et av de spesifiserte spesialtegnene. URL-en følges av mulig tegnsetting 
+og mellomrom.
+"""
+
+url = "|".join([url1, url2])
 
 
 initialer = r"(?<=(?:\s|\.))[A-ZÆØÅ]\."
@@ -457,7 +476,7 @@ catchall = r"\S"  # alle tegn som ikke er blanke blir til et eget token
 """
 
 
-regex = fork + [epost, parnum0, num, paragrafer, word, catchall]    #parnum kommentert ut
+regex = fork + [epost, parnum0, num, paragrafer, url, word, catchall]    #parnum kommentert ut
 regex = re.compile("|".join(regex))
 """Kombiner alle uttrykkene i rekkefølge og kompiler dem.
 
