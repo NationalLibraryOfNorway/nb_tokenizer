@@ -375,7 +375,7 @@ LGJ: juni 2014
 """
 
 
-num = r"\d+(?:\.(?!\s[A-ZÆØÅ]))?"
+num = r"\d+(?:\.(?!\s\p{Lu}))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
  med punktum bare om neste påfølgende tegn (etter blank) ikke er stor bokstav.
 
@@ -467,7 +467,7 @@ url = "|".join([url1, url2, url3])
 
 
 
-initialer = r"(?<=(?:\s|\.))[A-ZÆØÅ]\."
+initialer = r"(?<=(?:\s|\.))\p{Lu}\."
 word = r"\w+[-.@\w]*[\w]+-?"
 word = "|".join([initialer, word])
 """Ord er alt som ikke inneholder skillende skilletegn.
