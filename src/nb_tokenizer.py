@@ -50,6 +50,7 @@ vil aldri tiltrekke seg punktum.
 import re
 import sys
 import time
+import regex
 
 
 fork = [
@@ -485,8 +486,8 @@ catchall = r"\S"  # alle tegn som ikke er blanke blir til et eget token
 """
 
 
-regex = fork + [epost, parnum0, num, paragrafer, url, word, catchall]    #parnum kommentert ut
-regex = re.compile("|".join(regex))
+regex_pattern = fork + [epost, parnum0, num, paragrafer, url, word, catchall]    #parnum kommentert ut
+regex_pattern = regex.compile("|".join(regex_pattern))
 """Kombiner alle uttrykkene i rekkefølge og kompiler dem.
 
 Sjekk først om det er en forkortelse, ellers sjekk om det er et tall,
@@ -507,7 +508,7 @@ def tokenize_timer(text: str) -> list:
 
 def tokenize(text: str) -> list:
     """Tokenize the input ``text`` with the default ``regex`` pattern."""
-    tokens = re.findall(regex, text)
+    tokens = regex.findall(regex_pattern, text)
     return tokens
 
 
