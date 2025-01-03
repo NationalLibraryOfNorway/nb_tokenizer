@@ -438,6 +438,8 @@ inneholde bindestrek og punktum.
 """
 
 
+#url11 = r"(?:HTTPS?|https?|FTP|ftp)://\S+(?=\s[A-Z])"
+
 url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med http, https eller ftp. 
 
@@ -446,6 +448,8 @@ tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting
 og mellomrom eller linjeslutt.
 """
 
+#url22 = r"(?:WWW|www)\.\S+(?=\s[A-Z])"
+
 url2 = r"(?:WWW|www)\.\S+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med www. 
 
@@ -453,6 +457,8 @@ Kan inneholde hvilke som helst tegn, men siste tegn må være et alfanumerisk
 tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
 og mellomrom eller linjeslutt.
 """
+
+#url33 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+(?=\s[A-Z])"
 
 url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www.
