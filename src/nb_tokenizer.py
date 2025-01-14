@@ -470,8 +470,9 @@ mulig tegnsetting og mellomrom eller linjeslutt.
 url = "|".join([url1, url2, url3])
 
 
+initialer = r"(?<=\s)(?:[A-ZÆØÅ]\.)+(?=\W)"
 
-initialer = r"(?<=(?:\s|\.))[A-ZÆØÅ]\."
+
 word = r"\w+[-.@\w]*[\w]+-?"
 word = "|".join([initialer, word])
 """Ord er alt som ikke inneholder skillende skilletegn.
