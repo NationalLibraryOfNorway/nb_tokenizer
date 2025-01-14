@@ -471,6 +471,9 @@ url = "|".join([url1, url2, url3])
 
 
 initialer = r"(?<=\s)(?:[A-ZÆØÅ]\.)+(?=\W)"
+"""Initial og punktum tokeniseres sammen, og sekvenser av initialer
+uten mellomrom mellom tokeniseres sammen: H.C. Andersen.
+"""
 
 
 word = r"\w+[-.@\w]*[\w]+-?"
