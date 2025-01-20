@@ -438,6 +438,7 @@ inneholde bindestrek og punktum.
 
 
 #url11 = r"(?:HTTPS?|https?|FTP|ftp)://\S+(?=\s[A-Z])"
+#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
 
 url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med http, https eller ftp. 
@@ -448,6 +449,7 @@ og mellomrom eller linjeslutt.
 """
 
 #url22 = r"(?:WWW|www)\.\S+(?=\s[A-Z])"
+#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
 
 url2 = r"(?:WWW|www)\.\S+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med www. 
@@ -458,6 +460,7 @@ og mellomrom eller linjeslutt.
 """
 
 #url33 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+(?=\s[A-Z])"
+#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
 
 url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www.
