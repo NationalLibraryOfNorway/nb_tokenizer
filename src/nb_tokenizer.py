@@ -202,7 +202,6 @@ fork = [
     "[Kk]to\\.",
     "[Kk]v\\.",
     "[Ll][.]?c\\.",
-    "L\\.",
     "[Ll]au\\.",
     "[Ll]ib\\.",
     "[Ll]nr\\.",
@@ -439,35 +438,48 @@ inneholde bindestrek og punktum.
 """
 
 
-url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
+#url11 = r"(?:HTTPS?|https?|FTP|ftp)://\S+(?=\s[A-Z])"
+#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
+
+url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med http, https eller ftp. 
 
-Kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
+Kan inneholde hvilke som helst tegn, men siste tegn må være et alfanumerisk 
 tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
 og mellomrom eller linjeslutt.
 """
 
-url2 = r"(?:WWW|www)\.\S+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
+#url22 = r"(?:WWW|www)\.\S+(?=\s[A-Z])"
+#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
+
+url2 = r"(?:WWW|www)\.\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med www. 
 
-Kan bestå av hvilke som helst tegn, men siste tegn må være et alfanumerisk 
+Kan inneholde hvilke som helst tegn, men siste tegn må være et alfanumerisk 
 tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
 og mellomrom eller linjeslutt.
 """
 
-url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#[@$&(*+=%\w](?=[.,:;?!')\]\"]*(?:\s|$))"
+#url33 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+(?=\s[A-Z])"
+#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
+
+url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www.
 
-Må begynne med alfanumeriske tegn eller bindestrek og et punktum. Siste tegn må være
-et alfanumerisk tegn eller et av de spesifiserte spesialtegnene. Følges av mulig 
-tegnsetting og mellomrom eller linjeslutt.
+Må begynne med alfanumeriske tegn eller bindestrek, fulgt av et punktum. Siste tegn 
+må være et alfanumerisk tegn eller et av de spesifiserte spesialtegnene. Følges av 
+mulig tegnsetting og mellomrom eller linjeslutt.
 """
 
 url = "|".join([url1, url2, url3])
 
 
+initialer = r"(?<=\s)(?:[A-ZÆØÅ]\.)+(?=\W)"
+"""Initial og punktum tokeniseres sammen, og sekvenser av initialer
+uten mellomrom mellom tokeniseres sammen: H.C. Andersen.
+"""
 
-initialer = r"(?<=(?:\s|\.))\p{Lu}\."
+
 word = r"\w+[-.@\w]*[\w]+-?"
 word = "|".join([initialer, word])
 """Ord er alt som ikke inneholder skillende skilletegn.
