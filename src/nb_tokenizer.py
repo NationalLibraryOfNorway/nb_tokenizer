@@ -438,7 +438,7 @@ inneholde bindestrek og punktum.
 """
 
 
-#url11 = r"(?:HTTPS?|https?|FTP|ftp)://\S+(?=\s[A-Z])"
+#url11 = r"(?:HTTPS?|https?|FTP|ftp)://\S+(?=\s\p{Lu})"
 #Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
 
 url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
@@ -449,7 +449,7 @@ tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting
 og mellomrom eller linjeslutt.
 """
 
-#url22 = r"(?:WWW|www)\.\S+(?=\s[A-Z])"
+#url22 = r"(?:WWW|www)\.\S+(?=\s\p{Lu})"
 #Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
 
 url2 = r"(?:WWW|www)\.\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
@@ -460,7 +460,7 @@ tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting
 og mellomrom eller linjeslutt.
 """
 
-#url33 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+(?=\s[A-Z])"
+#url33 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+(?=\s\p{Lu})"
 #Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
 
 url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
@@ -474,7 +474,7 @@ mulig tegnsetting og mellomrom eller linjeslutt.
 url = "|".join([url1, url2, url3])
 
 
-initialer = r"(?<=\s)(?:[A-ZÆØÅ]\.)+(?=\W)"
+initialer = r"(?<=\s)(?:\p{Lu}\.)+(?=\W)"
 """Initial og punktum tokeniseres sammen, og sekvenser av initialer
 uten mellomrom mellom tokeniseres sammen: H.C. Andersen.
 """
