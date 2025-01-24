@@ -432,7 +432,7 @@ men også med bindestrek så i § 2-5  blir 2-5 et token.
 #"""Tolk tall etter § som heltall uten punktum."""
 
 
-paragrafer = "§+"
+paragrafer = r"§+"
 """§ eller §§ brukes i lovtekster."""
 
 
