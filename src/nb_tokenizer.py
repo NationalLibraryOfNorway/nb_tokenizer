@@ -392,11 +392,11 @@ Det vil sannsynligvis ikke ha så veldig stor betydning for utfallet.
 """
 
 
-num0 = r"\d{1,3}(?:\s\d{3}(?!\d))+"
-"""F.eks. 10 000, tillater ikke punktum. 
-
-Tokeniserer tall med mellomrom der de forekommer.
-"""
+#num0 = r"\d{1,3}(?:\s\d{3}(?!\d))+"
+#"""F.eks. 10 000, tillater ikke punktum. 
+#
+#Tokeniserer tall med mellomrom der de forekommer.
+#"""
 
 
 num1 = r"\d+(?:\.\d+)+"
@@ -418,7 +418,7 @@ num5 = r"\d+(?:[-–]\w+)"
 """Tallord kombinert med ord, f.eks. 1900-tallet"""
 
 # TODO: kombiner til det regulære uttrykket num eller num0 eller...
-num = "|".join([num0, num1, num2, num3, num4, num5, num])
+num = "|".join([num1, num2, num3, num4, num5, num])
 
 
 parnum0 = r"(?<=§\s)\d+(?:[-–—]\d+)*|(?<=§)\d+(?:[-–—]\d+)*"
