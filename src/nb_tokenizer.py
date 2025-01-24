@@ -393,7 +393,7 @@ Det vil sannsynligvis ikke ha så veldig stor betydning for utfallet.
 
 
 #num0 = r"\d{1,3}(?:\s\d{3}(?!\d))+"
-#"""F.eks. 10 000, tillater ikke punktum. 
+#"""F.eks. 10 000, tillater ikke punktum.
 #
 #Tokeniserer tall med mellomrom der de forekommer.
 #"""
@@ -450,25 +450,25 @@ inneholde bindestrek og punktum.
 url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med http://, https:// eller ftp://.
 
-Kan inneholde hvilke som helst tegn, men siste tegn må være et av de spesifiserte 
+Kan inneholde hvilke som helst tegn, men siste tegn må være et av de spesifiserte
 spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting og
 mellomrom eller linjeslutt.
 """
 
 url2 = r"(?:WWW|www)\.\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
-"""URL som starter med www. 
+"""URL som starter med www.
 
-Kan inneholde hvilke som helst tegn, men siste tegn må være et av de spesifiserte 
-spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting 
+Kan inneholde hvilke som helst tegn, men siste tegn må være et av de spesifiserte
+spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting
 og mellomrom eller linjeslutt.
 """
 
 url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
-"""Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www. URL-en 
+"""Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www. URL-en
 må begynne med alfanumeriske tegn eller bindestrek, fulgt av et punktum.
 
-Kan inneholde spesialtegn og alfanumeriske tegn. Siste tegn må være et av de spesifiserte 
-spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting og mellomrom 
+Kan inneholde spesialtegn og alfanumeriske tegn. Siste tegn må være et av de spesifiserte
+spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting og mellomrom
 eller linjeslutt.
 """
 
