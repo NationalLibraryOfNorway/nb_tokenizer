@@ -447,37 +447,29 @@ inneholde bindestrek og punktum.
 """
 
 
-#url11 = r"(?:HTTPS?|https?|FTP|ftp)://\S+(?=\s[A-Z])"
-#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
-
 url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
-"""URL som starter med http, https eller ftp. 
+"""URL som starter med http://, https:// eller ftp://.
 
-Kan inneholde hvilke som helst tegn, men siste tegn må være et alfanumerisk 
-tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
-og mellomrom eller linjeslutt.
+Kan inneholde hvilke som helst tegn, men siste tegn må være et av de spesifiserte 
+spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting og
+mellomrom eller linjeslutt.
 """
-
-#url22 = r"(?:WWW|www)\.\S+(?=\s[A-Z])"
-#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
 
 url2 = r"(?:WWW|www)\.\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med www. 
 
-Kan inneholde hvilke som helst tegn, men siste tegn må være et alfanumerisk 
-tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
+Kan inneholde hvilke som helst tegn, men siste tegn må være et av de spesifiserte 
+spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting 
 og mellomrom eller linjeslutt.
 """
 
-#url33 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+(?=\s[A-Z])"
-#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
-
 url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
-"""Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www.
+"""Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www. URL-en 
+må begynne med alfanumeriske tegn eller bindestrek, fulgt av et punktum.
 
-Må begynne med alfanumeriske tegn eller bindestrek, fulgt av et punktum. Siste tegn 
-må være et alfanumerisk tegn eller et av de spesifiserte spesialtegnene. Følges av 
-mulig tegnsetting og mellomrom eller linjeslutt.
+Kan inneholde spesialtegn og alfanumeriske tegn. Siste tegn må være et av de spesifiserte 
+spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting og mellomrom 
+eller linjeslutt.
 """
 
 url = "|".join([url1, url2, url3])
