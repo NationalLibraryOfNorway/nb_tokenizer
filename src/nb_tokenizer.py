@@ -92,6 +92,7 @@ fork = [
     "[Cc]a\\.",
     "[Cc]and\\.mag\\.",
     "[Cc]and\\.",
+    "Chr?\\.",
     "[Cc][Oo]\\.",
     "[Dd][.]?d\\.",
     "[Dd][.]?e\\.",
@@ -302,6 +303,7 @@ fork = [
     "[Ss]ek\\.",
     "[Ss]en\\.",
     "[Ss]ep\\.",
+    "Sch\\.",
     "[Ss]ign\\.",
     "[Ss]iv[.]?ing\\.",
     "[Ss]j\\.",
@@ -332,6 +334,7 @@ fork = [
     "[Tt]ab\\.",
     "[Tt]echn\\.",
     "[Tt]emp\\.",
+    "Ths?\\.",
     "[Tt]i\\.",
     "[Tt]idl\\.",
     "[Tt]ils\\.",
@@ -340,6 +343,7 @@ fork = [
     "[Tt]lf\\.",
     "[Tt]o\\.",
     "[Tt]or\\.",
+    "Tr\\.",
     "[Tt]y\\.",
     "[Tt]vml\\.",
     "[Uu]lt\\.",
@@ -355,6 +359,8 @@ fork = [
     "[Vv]ol\\.",
     "[Vv]s\\.",
     "[Vv]sa\\.",
+    "Werg\\.",
+    "Wilh\\.",
     "[Åå]rg\\.",
     "[Åå]rh\\.",
 ]
@@ -362,6 +368,10 @@ fork = [
 """Her er listen over forkortelser med punktum.
 
 Hentet fra Wikipedia og Språkrådet med egendefinerte tillegg.
+
+Lista inkluderer forkortelser for navn, som i Jens Chr. Gundersen.
+Lista unngår navneforkortelser som også kan være fullendte navn på slutten
+av setning, som "Alex.", "Fred.", "Holm." etc.
 """
 
 
@@ -383,11 +393,11 @@ Det vil sannsynligvis ikke ha så veldig stor betydning for utfallet.
 """
 
 
-num0 = r"\d{1,3}(?:\s\d{3}(?!\d))+"
-"""F.eks. 10 000, tillater ikke punktum. 
-
-Tokeniserer tall med mellomrom der de forekommer.
-"""
+#num0 = r"\d{1,3}(?:\s\d{3}(?!\d))+"
+#"""F.eks. 10 000, tillater ikke punktum.
+#
+#Tokeniserer tall med mellomrom der de forekommer.
+#"""
 
 
 num1 = r"\d+(?:\.\d+)+"
@@ -409,7 +419,7 @@ num5 = r"\d+(?:[-–]\w+)"
 """Tallord kombinert med ord, f.eks. 1900-tallet"""
 
 # TODO: kombiner til det regulære uttrykket num eller num0 eller...
-num = "|".join([num0, num1, num2, num3, num4, num5, num])
+num = "|".join([num1, num2, num3, num4, num5, num])
 
 
 parnum0 = r"(?<=§\s)\d+(?:[-–—]\d+)*|(?<=§)\d+(?:[-–—]\d+)*"
@@ -423,7 +433,7 @@ men også med bindestrek så i § 2-5  blir 2-5 et token.
 #"""Tolk tall etter § som heltall uten punktum."""
 
 
-paragrafer = "§+"
+paragrafer = r"§+"
 """§ eller §§ brukes i lovtekster."""
 
 
@@ -438,37 +448,29 @@ inneholde bindestrek og punktum.
 """
 
 
-#url11 = r"(?:HTTPS?|https?|FTP|ftp)://\S+(?=\s\p{Lu})"
-#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
-
 url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
-"""URL som starter med http, https eller ftp. 
+"""URL som starter med http://, https:// eller ftp://.
 
-Kan inneholde hvilke som helst tegn, men siste tegn må være et alfanumerisk 
-tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
-og mellomrom eller linjeslutt.
+Kan inneholde hvilke som helst tegn, men siste tegn må være et av de spesifiserte
+spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting og
+mellomrom eller linjeslutt.
 """
-
-#url22 = r"(?:WWW|www)\.\S+(?=\s\p{Lu})"
-#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
 
 url2 = r"(?:WWW|www)\.\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
-"""URL som starter med www. 
+"""URL som starter med www.
 
-Kan inneholde hvilke som helst tegn, men siste tegn må være et alfanumerisk 
-tegn eller et av de spesifiserte spesialtegnene. Følges av mulig tegnsetting 
+Kan inneholde hvilke som helst tegn, men siste tegn må være et av de spesifiserte
+spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting
 og mellomrom eller linjeslutt.
 """
 
-#url33 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+(?=\s\p{Lu})"
-#Inkludere alle tegn frem til mellomrom når det ikke er stor bokstav som følger.
-
 url3 = r"[\w-]+\.[-.~:/?#[\]@!$&'()*+,;=%\w]+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
-"""Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www.
+"""Matcher gjenværende URL-er som ikke begynner med http, https, ftp eller www. URL-en
+må begynne med alfanumeriske tegn eller bindestrek, fulgt av et punktum.
 
-Må begynne med alfanumeriske tegn eller bindestrek, fulgt av et punktum. Siste tegn 
-må være et alfanumerisk tegn eller et av de spesifiserte spesialtegnene. Følges av 
-mulig tegnsetting og mellomrom eller linjeslutt.
+Kan inneholde spesialtegn og alfanumeriske tegn. Siste tegn må være et av de spesifiserte
+spesialtegnene eller et alfanumerisk tegn. Følges av mulig tegnsetting og mellomrom
+eller linjeslutt.
 """
 
 url = "|".join([url1, url2, url3])
