@@ -47,7 +47,6 @@ vil aldri tiltrekke seg punktum.
 Øvrige tegn som ikke passer inn med mønstrene over behandles som separate token.
 """
 
-import re
 import sys
 import time
 import regex
