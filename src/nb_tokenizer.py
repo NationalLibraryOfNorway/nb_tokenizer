@@ -91,6 +91,7 @@ fork = [
     "[Cc]a\\.",
     "[Cc]and\\.mag\\.",
     "[Cc]and\\.",
+    "Chr?\\.",
     "[Cc][Oo]\\.",
     "[Dd][.]?d\\.",
     "[Dd][.]?e\\.",
@@ -301,6 +302,7 @@ fork = [
     "[Ss]ek\\.",
     "[Ss]en\\.",
     "[Ss]ep\\.",
+    "Sch\\.",
     "[Ss]ign\\.",
     "[Ss]iv[.]?ing\\.",
     "[Ss]j\\.",
@@ -331,6 +333,7 @@ fork = [
     "[Tt]ab\\.",
     "[Tt]echn\\.",
     "[Tt]emp\\.",
+    "Ths?\\.",
     "[Tt]i\\.",
     "[Tt]idl\\.",
     "[Tt]ils\\.",
@@ -339,6 +342,7 @@ fork = [
     "[Tt]lf\\.",
     "[Tt]o\\.",
     "[Tt]or\\.",
+    "Tr\\.",
     "[Tt]y\\.",
     "[Tt]vml\\.",
     "[Uu]lt\\.",
@@ -354,6 +358,8 @@ fork = [
     "[Vv]ol\\.",
     "[Vv]s\\.",
     "[Vv]sa\\.",
+    "Werg\\.",
+    "Wilh\\.",
     "[Åå]rg\\.",
     "[Åå]rh\\.",
 ]
@@ -361,6 +367,10 @@ fork = [
 """Her er listen over forkortelser med punktum.
 
 Hentet fra Wikipedia og Språkrådet med egendefinerte tillegg.
+
+Lista inkluderer forkortelser for navn, som i Jens Chr. Gundersen.
+Lista unngår navneforkortelser som også kan være fullendte navn på slutten
+av setning, som "Alex.", "Fred.", "Holm." etc.
 """
 
 
