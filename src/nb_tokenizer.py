@@ -47,9 +47,9 @@ vil aldri tiltrekke seg punktum.
 Øvrige tegn som ikke passer inn med mønstrene over behandles som separate token.
 """
 
+import regex
 import sys
 import time
-import regex
 
 
 fork = [
@@ -383,7 +383,7 @@ LGJ: juni 2014
 """
 
 
-num = r"\d+(?:\.(?!\s\p{Lu}))?"
+num1 = r"\d+(?:\.(?!\s\p{Lu}))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
  med punktum bare om neste påfølgende tegn (etter blank) ikke er stor bokstav.
 
@@ -399,36 +399,35 @@ Det vil sannsynligvis ikke ha så veldig stor betydning for utfallet.
 #"""
 
 
-num1 = r"\d+(?:\.\d+)+"
+num2 = r"\d+(?:\.\d+)+"
 """Seksjon 3.2.1 eller 2.3999, kan ikke ha sluttpunktum."""
 
 
-num2 = r"\d+,\d+"
+num3 = r"\d+,\d+"
 """3,5 kan ikke ha sluttpunktum."""
 
 
-num3 = r"\.\d+"
+num4 = r"\.\d+"
 """Det var .2 prosent økning."""
 
 
-num4 = r"\.{3,}"
+num5 = r"\.{3,}"
 """Tre eller flere punktum blir ett token."""
 
-num5 = r"\d+(?:[-–]\w+)"
+num6 = r"\d+(?:[-–]\w+)"
 """Tallord kombinert med ord, f.eks. 1900-tallet"""
 
-# TODO: kombiner til det regulære uttrykket num eller num0 eller...
-num = "|".join([num1, num2, num3, num4, num5, num])
+num = "|".join([num2, num3, num4, num5, num6, num1])
 
 
-parnum0 = r"(?<=§\s)\d+(?:[-–—]\d+)*|(?<=§)\d+(?:[-–—]\d+)*"
+parnum = r"(?<=§\s)\d+(?:[-–—]\d+)*|(?<=§)\d+(?:[-–—]\d+)*"
 """Paragraftegn kan komme i en eller to (eller flere?) utgaver.
 
 Tolk tall etter § som rene tall uten punktum,
 men også med bindestrek så i § 2-5  blir 2-5 et token.
 """
 
-#parnum = r"(?<=§\s)\d+|(?<=§)\d+"
+#parnum0 = r"(?<=§\s)\d+|(?<=§)\d+"
 #"""Tolk tall etter § som heltall uten punktum."""
 
 
@@ -482,7 +481,7 @@ uten mellomrom mellom tokeniseres sammen: H.C. Andersen.
 
 
 word = r"\w+[-.@\w]*[\w]+-?"
-word = "|".join([initialer, word])
+#word = "|".join([initialer, word])
 """Ord er alt som ikke inneholder skillende skilletegn.
 
 Bindestrek og @ og lignende går inn i tokenet, punktum inkludert,
@@ -499,7 +498,7 @@ catchall = r"\S"  # alle tegn som ikke er blanke blir til et eget token
 """
 
 
-regex_pattern = fork + [epost, parnum0, num, paragrafer, url, word, catchall]    #parnum kommentert ut
+regex_pattern = fork + [epost, parnum, num, paragrafer, url, initialer, word, catchall]    #parnum0 kommentert ut
 regex_pattern = regex.compile("|".join(regex_pattern))
 """Kombiner alle uttrykkene i rekkefølge og kompiler dem.
 
