@@ -52,6 +52,20 @@ import sys
 import time
 
 
+
+"""Forkortelser
+-----------------------------------------------------------------------------
+
+Liste over forkortelser med punktum.
+
+Hentet fra Wikipedia, Språkrådet og Korrekturavdelingen med egendefinerte tillegg.
+
+Lista inkluderer forkortelser for navn, som i Jens Chr. Gundersen.
+Lista unngår navneforkortelser som også kan være fullendte navn på slutten
+av setning, som "Alex.", "Fred.", "Holm." etc.
+TODO: legge til flere navneforkortelser etter hvert som man kommer over dem.
+"""
+
 fork = [
     "[Aa]/[Ss]",
     "[Aa][.]?[Dd]\\.",
@@ -364,87 +378,76 @@ fork = [
     "[Åå]rh\\.",
 ]
 
-"""Her er listen over forkortelser med punktum.
-
-Hentet fra Wikipedia og Språkrådet med egendefinerte tillegg.
-
-Lista inkluderer forkortelser for navn, som i Jens Chr. Gundersen.
-Lista unngår navneforkortelser som også kan være fullendte navn på slutten
-av setning, som "Alex.", "Fred.", "Holm." etc.
-"""
 
 
 """Numeriske uttrykk
 -----------------------------------------------------------------------------
 
-Numeriske uttrykk er alt som er bygd opp av tall, komma og punktum og blanke.
-
-LGJ: juni 2014
+Numeriske uttrykk er alt som er bygd opp av tall, komma, punktum og bindestrek.
 """
-
 
 num1 = r"\d+(?:\.(?!\s\p{Lu}))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
  med punktum bare om neste påfølgende tegn (etter blank) ikke er stor bokstav.
-
-Denne må justeres for samisk og andre språk med større utvalg av store bokstaver.
-Det vil sannsynligvis ikke ha så veldig stor betydning for utfallet.
 """
-
 
 #num0 = r"\d{1,3}(?:\s\d{3}(?!\d))+"
 #"""F.eks. 10 000, tillater ikke punktum.
-#
 #Tokeniserer tall med mellomrom der de forekommer.
 #"""
-
 
 num2 = r"\d+(?:\.\d+)+"
 """Seksjon 3.2.1 eller 2.3999, kan ikke ha sluttpunktum."""
 
-
 num3 = r"\d+,\d+"
 """3,5 kan ikke ha sluttpunktum."""
-
 
 num4 = r"\.\d+"
 """Det var .2 prosent økning."""
 
-
-num5 = r"\.{3,}"
-"""Tre eller flere punktum blir ett token."""
-
-num6 = r"\d+(?:[-–]\w+)"
+num5 = r"\d+(?:[-–]\w+)"
 """Tallord kombinert med ord, f.eks. 1900-tallet"""
 
-num = "|".join([num2, num3, num4, num5, num6, num1])
-
-
 parnum = r"(?<=§\s)\d+(?:[-–—]\d+)*|(?<=§)\d+(?:[-–—]\d+)*"
-"""Paragraftegn kan komme i en eller to (eller flere?) utgaver.
-
-Tolk tall etter § som rene tall uten punktum,
-men også med bindestrek så i § 2-5  blir 2-5 et token.
+"""Tolk tall etter § som rene tall uten punktum,
+men også med bindestrek så i § 2-5 blir 2-5 et token.
 """
 
-#parnum0 = r"(?<=§\s)\d+|(?<=§)\d+"
-#"""Tolk tall etter § som heltall uten punktum."""
+num = "|".join([parnum, num2, num3, num4, num5, num1])
 
+
+
+"""Tegn
+-----------------------------------------------------------------------------
+
+Sekvenser av tegn som skal tolkes som ett token, gjelder ellipse (tre punktum)
+og sekvenser av paragraftegn §.
+"""
+
+ellipse = r"\.{3,}"
+"""Tre eller flere punktum blir ett token."""
 
 paragrafer = r"§+"
-"""§ eller §§ brukes i lovtekster."""
+"""§ eller §§ brukes i lovtekster.
+Paragraftegn kan komme i en eller to (eller flere?) utgaver.
+"""
 
+
+
+"""E-poster og URL-er
+-----------------------------------------------------------------------------
+
+E-poster og URL-er er strenger med kombinasjoner av bokstaver, tall og 
+spesialtegn som skal tolkes som ett token.
+"""
 
 epost = r"\w+[-.+!#$%&'*/=?^(){}[\]\w]*@\w+[-.\w]*\.\w+"
 """E-post består av et brukernavn, fulgt av @ og et domene med punktum.
 
 Brukernavnet må begynne på et alfanumerisk tegn, men kan
-inneholde spesialtegn.
-
-Domenet må begynne på et alfanumerisk tegn, men kan
-inneholde bindestrek og punktum.
+inneholde spesialtegn. Domenet må begynne på et alfanumerisk tegn,
+men kan inneholde bindestrek og punktum.
 """
-
 
 url1 = r"(?:HTTPS?|https?|FTP|ftp)://\S+[-~/#@$&*+=\w](?=[.,:;?!')\]\"]*(?:\s|$))"
 """URL som starter med http://, https:// eller ftp://.
@@ -474,10 +477,19 @@ eller linjeslutt.
 url = "|".join([url1, url2, url3])
 
 
+
+"""Initialer
+-----------------------------------------------------------------------------
+
+Initialer er enslige, store bokstaver med punktum skal tolkes som ett token.
+Gjelder også flere initialer på rad uten mellomrom.
+"""
+
 initialer = r"(?<=\s)(?:\p{Lu}\.)+(?=\W)"
 """Initial og punktum tokeniseres sammen, og sekvenser av initialer
 uten mellomrom mellom tokeniseres sammen: H.C. Andersen.
 """
+
 
 
 word = r"\w+[-.@\w]*[\w]+-?"
@@ -490,6 +502,7 @@ Bindestrek kan også avslutte ord som i "ord- og setningsdeling".
 Andre tegn, som punktum og kolon i slutt, vil ikke tokeniseres sammen med ordet.
 """
 
+
 catchall = r"\S"  # alle tegn som ikke er blanke blir til et eget token
 """Alle tegn som ikke er et blankt tegn
  (tab, mellomrom linjeskift osv.),
@@ -498,7 +511,7 @@ catchall = r"\S"  # alle tegn som ikke er blanke blir til et eget token
 """
 
 
-regex_pattern = fork + [epost, parnum, num, paragrafer, url, initialer, word, catchall]    #parnum0 kommentert ut
+regex_pattern = fork + [epost, num, ellipse, paragrafer, url, initialer, word, catchall]
 regex_pattern = regex.compile("|".join(regex_pattern))
 """Kombiner alle uttrykkene i rekkefølge og kompiler dem.
 
