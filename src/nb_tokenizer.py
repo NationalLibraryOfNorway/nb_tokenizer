@@ -47,9 +47,9 @@ vil aldri tiltrekke seg punktum.
 Øvrige tegn som ikke passer inn med mønstrene over behandles som separate token.
 """
 
-import re
 import sys
 import time
+import regex
 
 
 fork = [
@@ -383,7 +383,7 @@ LGJ: juni 2014
 """
 
 
-num = r"\d+(?:\.(?!\s[A-ZÆØÅ]))?"
+num = r"\d+(?:\.(?!\s\p{Lu}))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
  med punktum bare om neste påfølgende tegn (etter blank) ikke er stor bokstav.
 
@@ -475,7 +475,7 @@ eller linjeslutt.
 url = "|".join([url1, url2, url3])
 
 
-initialer = r"(?<=\s)(?:[A-ZÆØÅ]\.)+(?=\W)"
+initialer = r"(?<=\s)(?:\p{Lu}\.)+(?=\W)"
 """Initial og punktum tokeniseres sammen, og sekvenser av initialer
 uten mellomrom mellom tokeniseres sammen: H.C. Andersen.
 """
@@ -499,8 +499,8 @@ catchall = r"\S"  # alle tegn som ikke er blanke blir til et eget token
 """
 
 
-regex = fork + [epost, parnum0, num, paragrafer, url, word, catchall]    #parnum kommentert ut
-regex = re.compile("|".join(regex))
+regex_pattern = fork + [epost, parnum0, num, paragrafer, url, word, catchall]    #parnum kommentert ut
+regex_pattern = regex.compile("|".join(regex_pattern))
 """Kombiner alle uttrykkene i rekkefølge og kompiler dem.
 
 Sjekk først om det er en forkortelse, ellers sjekk om det er et tall,
@@ -521,7 +521,7 @@ def tokenize_timer(text: str) -> list:
 
 def tokenize(text: str) -> list:
     """Tokenize the input ``text`` with the default ``regex`` pattern."""
-    tokens = re.findall(regex, text)
+    tokens = regex.findall(regex_pattern, text)
     return tokens
 
 
