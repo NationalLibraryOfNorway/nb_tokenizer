@@ -5,6 +5,7 @@
 Tokenisator for ngramleser (evt. parsing).
 -------------------------------------------
 Lars G Johnsen, Nasjonalbiblioteket, juni 2014
+Marie Iversdatter Røsok, Nasjonalbiblioteket, januar 2025
 
 Tokenisatorens oppgave er å danne token eller ord fra en sekvens med tegn.
 I utgangspunktet fungerer skilletegn og mellomrom som ordgrenser,
@@ -17,7 +18,6 @@ i tillegg kan ordene selv være bundet sammen med bindestrek:
 p-pille (bindestrek)
 3.3 (punktum i seksjonsnummerering)
 etc. (forkortelser)
-10 000 (token over mellomrom)
 3,14 (desimaltall med komma)
 co2 (bokstaver og tall i kjemiske formler)
 co2-forurensning (bokstaver tall pluss bindestrek)
@@ -32,20 +32,24 @@ Den kan imidlertid gjøres følsom for påfølgende stor bokstav,
 men det er altså ikke gjort her.
 Punktum tillates inne i ord og deler ikke opp ord med punktum i seg.
 
-Alle skilletegn ellers utgjør egne token, bortsett fra § som kan sekvensieres,
-så § og §§ vil være egne tokener;
+Paragraftegn § kan sekvensieres, så § og §§ vil være egne tokener;
 de benyttes en hel del i lovtekster for entall og flertall.
-
-Tall skrevet med mellomrom blir ett token om de er på formen xx xxx, altså 1
-eller 3 siffer etterfulgt av grupper på tre siffer skilt med ett mellomrom.
-Så 3 1995 vil være to tokener, mens 3 995 blir ett token,
-4000 398 blir igjen to token. (Mulig det er endret)
 
 Tall som følger etter § (adskilt med maks ett mellomrom)
 vil aldri tiltrekke seg punktum.
 
-Øvrige tegn som ikke passer inn med mønstrene over behandles som separate token.
+Skilletegn og andre spesialtegn kan være del av e-poster eller URL-er som
+skal tolkes som ett token, med mindre visse skilletegnet kommer på slutten
+av strengen, da skilles det ut som eget token.
+user123!@domain.com (tall, !,  @, og . inngår i tokenet)
+https://example.com/path?key=value&Key=Value/ (:, /, ., ?, = og & inngår i tokenet)
+https://example.com/resource . (punktum på slutten av URL er eget token)
+
+Ellers utgjør alle skilletegn egne token, og øvrige tegn som ikke passer
+inn med mønstrene over behandles som separate token.
 """
+
+
 
 import regex
 import sys
@@ -529,7 +533,7 @@ def tokenize_timer(text: str) -> list:
 
 
 def tokenize(text: str) -> list:
-    """Tokenize the input ``text`` with the default ``regex`` pattern."""
+    """Tokenize the input ``text`` with the default ``regex_pattern``."""
     tokens = regex.findall(regex_pattern, text)
     return tokens
 
