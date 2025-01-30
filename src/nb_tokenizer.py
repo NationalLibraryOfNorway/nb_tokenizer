@@ -496,12 +496,14 @@ initialer = r"(?<=\s)(?:\p{Lu}\.)+(?=\W)"
 
 
 word = r"\w+[-.@\w]*[\w]+-?"
-#word = "|".join([initialer, word])
 """Ord er alt som ikke inneholder skillende skilletegn.
 
 Bindestrek, @ og punktum går inn i tokenet.
 Bindestrek kan også avslutte ord som i "ord- og setningsdeling".
 Andre tegn, som punktum og kolon i slutt, vil ikke tokeniseres sammen med ordet.
+
+TODO: vurder å justere hvilke tegn som skal være tillatt i ord, og om @ skal
+fjernes (e-poster håndteres av egen regex), eller andre tegn legges til.
 """
 
 
