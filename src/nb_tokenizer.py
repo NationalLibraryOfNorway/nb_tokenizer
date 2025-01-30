@@ -420,8 +420,8 @@ num = "|".join([parnum, num2, num3, num4, num5, num1])
 """Tegn
 -----------------------------------------------------------------------------
 
-Sekvenser av tegn som skal tolkes som ett token, gjelder ellipse (tre punktum)
-og sekvenser av paragraftegn §.
+Sekvenser av tegn som skal tolkes som ett token, gjelder ellipse (tre eller
+flere punktum) og sekvenser av paragraftegn §.
 """
 
 ellipse = r"\.{3,}"
@@ -486,8 +486,7 @@ Gjelder også flere initialer på rad uten mellomrom.
 """
 
 initialer = r"(?<=\s)(?:\p{Lu}\.)+(?=\W)"
-"""Initial og punktum tokeniseres sammen, og sekvenser av initialer
-uten mellomrom mellom tokeniseres sammen: H.C. Andersen.
+"""(Sekvenser av) initial og punktum tokeniseres sammen: H.C. Andersen.
 """
 
 
@@ -496,18 +495,15 @@ word = r"\w+[-.@\w]*[\w]+-?"
 #word = "|".join([initialer, word])
 """Ord er alt som ikke inneholder skillende skilletegn.
 
-Bindestrek og @ og lignende går inn i tokenet, punktum inkludert,
-tar også med @ for mailadresser.
+Bindestrek, @ og punktum går inn i tokenet.
 Bindestrek kan også avslutte ord som i "ord- og setningsdeling".
 Andre tegn, som punktum og kolon i slutt, vil ikke tokeniseres sammen med ordet.
 """
 
 
 catchall = r"\S"  # alle tegn som ikke er blanke blir til et eget token
-"""Alle tegn som ikke er et blankt tegn
- (tab, mellomrom linjeskift osv.),
- og som ikke er blitt matchet opp tidligere,
- blir å regne som egne token.
+"""Alle tegn som ikke er et blankt tegn (tab, mellomrom, linjeskift osv.),
+og som ikke er blitt matchet opp tidligere, blir å regne som egne token.
 """
 
 
@@ -515,9 +511,10 @@ regex_pattern = fork + [epost, num, ellipse, paragrafer, url, initialer, word, c
 regex_pattern = regex.compile("|".join(regex_pattern))
 """Kombiner alle uttrykkene i rekkefølge og kompiler dem.
 
-Sjekk først om det er en forkortelse, ellers sjekk om det er et tall,
-sjekk paragrafer, prøv å lag et ord. Hvis ikke noe av det her,
-la tegnet være sitt eget token og gå videre.
+Sjekk først om det er en forkortelse.
+Sjekk om det er en e-post (fordi e-poster kan begynne med tall), ellers
+sjekk om det er et tall, sjekk ellipse og paragrafer, sjekk URL-er, sjekk initialer,
+prøv å lage et ord. Hvis ikke noe av det her, la tegnet være sitt eget token og gå videre.
 """
 
 
