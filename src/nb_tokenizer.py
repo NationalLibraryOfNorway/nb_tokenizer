@@ -485,11 +485,11 @@ url = "|".join([url1, url2, url3])
 """Initialer
 -----------------------------------------------------------------------------
 
-Initialer er enslige, store bokstaver med punktum skal tolkes som ett token.
+Initialer er enslige, store bokstaver med punktum som skal tolkes som ett token.
 Gjelder også flere initialer på rad uten mellomrom.
 """
 
-initialer = r"(?<=\s)(?:\p{Lu}\.)+(?=\W)"
+initialer = r"(?<=^|\s)(?:\p{Lu}\.)+(?=\W)"
 """(Sekvenser av) initial og punktum tokeniseres sammen: H.C. Andersen.
 """
 
