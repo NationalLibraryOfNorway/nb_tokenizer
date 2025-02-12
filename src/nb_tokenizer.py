@@ -81,7 +81,6 @@ fork = [
     "[Aa]dr\\.",
     "[Aa]dv\\.",
     "[Aa]ga\\.",
-    "[Aa]lt\\.",
     "[Aa]ng\\.",
     "[Aa]nk\\.",
     "[Aa]plf\\.",
@@ -234,18 +233,14 @@ fork = [
     "[Mm]ag[.]?art\\.",
     "[Mm]ag\\.",
     "[Mm]aks\\.",
-    "[Mm]an\\.",
     "[Mm]ar\\.",
     "[Mm]ax\\.",
     "[Mm]d\\.",
-    "[Mm]ed\\.",
     "Meld\\.",
     "[Mm]ek\\.",
     "[Mm]fl\\.",
     "[Mm]ht\\.",
-    "[Mm]il\\.",
     "[Mm]ill\\.",
-    "[Mm]in\\.",
     "[Mm]nd\\.",
     "[Mm]ob\\.",
     "[Mm]od\\.",
@@ -350,13 +345,11 @@ fork = [
     "[Tt]echn\\.",
     "[Tt]emp\\.",
     "Ths?\\.",
-    "[Tt]i\\.",
     "[Tt]idl\\.",
     "[Tt]ils\\.",
     "[Tt]ilsv\\.",
     "[Tt]ir\\.",
     "[Tt]lf\\.",
-    "[Tt]o\\.",
     "[Tt]or\\.",
     "Tr\\.",
     "[Tt]y\\.",
@@ -501,7 +494,8 @@ Bindestrek kan også avslutte ord som i "ord- og setningsdeling".
 Andre tegn, som punktum og kolon i slutt, vil ikke tokeniseres sammen med ordet.
 
 TODO: vurder å justere hvilke tegn som skal være tillatt i ord, og om @ skal
-fjernes (e-poster håndteres av egen regex), eller andre tegn legges til.
+fjernes (e-poster håndteres av egen regex), eller andre tegn legges til
+(f.eks. apostrof).
 """
 
 
