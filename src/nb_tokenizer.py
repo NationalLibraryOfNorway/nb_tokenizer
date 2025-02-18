@@ -51,7 +51,7 @@ inn med mønstrene over behandles som separate token.
 
 
 
-import regex
+import re
 import sys
 import time
 
@@ -381,7 +381,9 @@ fork = [
 Numeriske uttrykk er alt som er bygd opp av tall, komma, punktum og bindestrek.
 """
 
-num1 = r"\d+(?:\.(?!\s\p{Lu}))?"
+#Lu = r"A-ZÆØÅÁÂÄČĐÉÏŊÖŠŦŽ"   #Lu står for Letter uppercase
+
+num1 = r"\d+(?:\.(?!\s[A-ZÆØÅÁÂÄČĐÉÏŊÖŠŦŽ]))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
  med punktum bare om neste påfølgende tegn (etter blank) ikke er stor bokstav.
 """
@@ -480,7 +482,7 @@ Initialer er enslige, store bokstaver med punktum som skal tolkes som ett token.
 Gjelder også flere initialer på rad uten mellomrom.
 """
 
-initialer = r"(?<=^|\s)(?:\p{Lu}\.)+(?=\W)"
+initialer = r"(?<=\s)(?:[A-ZÆØÅÁÂÄČĐÉÏŊÖŠŦŽ]\.)+(?=\W)"
 """(Sekvenser av) initial og punktum tokeniseres sammen: H.C. Andersen.
 """
 
@@ -506,7 +508,7 @@ og som ikke er blitt matchet opp tidligere, blir å regne som egne token.
 
 
 regex_pattern = fork + [epost, num, ellipse, paragrafer, url, initialer, word, catchall]
-regex_pattern = regex.compile("|".join(regex_pattern))
+regex_pattern = re.compile("|".join(regex_pattern))
 """Kombiner alle uttrykkene i rekkefølge og kompiler dem.
 
 Sjekk først om det er en forkortelse.
@@ -528,7 +530,7 @@ def tokenize_timer(text: str) -> list:
 
 def tokenize(text: str) -> list:
     """Tokenize the input ``text`` with the default ``regex_pattern``."""
-    tokens = regex.findall(regex_pattern, text)
+    tokens = re.findall(regex_pattern, text)
     return tokens
 
 
