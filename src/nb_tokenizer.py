@@ -381,7 +381,9 @@ fork = [
 Numeriske uttrykk er alt som er bygd opp av tall, komma, punktum og bindestrek.
 """
 
-num1 = r"\d+(?:\.(?!\s[A-ZÆØÅÁÂÄČĐÉÏŊÖŠŦŽÞÐÇĞİÖŞÜȚȘĎĚŇŘŤÚŮĄĆĘŁŃÓŚŹŻŐŰĆ]))?"
+Lu = "A-ZÆØÅÀÁÂÃÄÅĀĄĂÇĆČÈÉÊĖĘĚĒËÌÍÎÏĮİĪIÐĎĐĢĞĶĻŁĹĽÑŃŅŇŊÒÓÔÕÖŐŒŘŚŞŠȘÞŤŦȚÙÚÛÜŮŲŪŰÝŹŽŻ"    #Letter uppercase
+
+num1 = fr"\d+(?:\.(?!\s[{Lu}]))?"
 """Tall som kan slutte på punktum består av hele tall, som tokeniseres
  med punktum bare om neste påfølgende tegn (etter blank) ikke er stor bokstav.
 """
@@ -409,7 +411,6 @@ men også med bindestrek så i § 2-5 blir 2-5 et token.
 """
 
 num = "|".join([parnum, num2, num3, num4, num5, num1])
-
 
 
 """Tegn
@@ -480,10 +481,9 @@ Initialer er enslige, store bokstaver med punktum som skal tolkes som ett token.
 Gjelder også flere initialer på rad uten mellomrom.
 """
 
-initialer = r"\b(?:[A-ZÆØÅÁÂÄČĐÉÏŊÖŠŦŽÞÐÇĞİÖŞÜȚȘĎĚŇŘŤÚŮĄĆĘŁŃÓŚŹŻŐŰĆ]\.)+(?=\W)"
+initialer = fr"\b(?:[{Lu}]\.)+(?=\W)"
 """(Sekvenser av) initial og punktum tokeniseres sammen: H.C. Andersen.
 """
-
 
 
 word = r"\w+[-.@\w]*[\w]+-?"
