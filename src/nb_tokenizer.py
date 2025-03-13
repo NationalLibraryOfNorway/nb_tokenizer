@@ -388,21 +388,21 @@ num1 = fr"\d+(?:\.(?!\s[{Lu}]))?"
  med punktum bare om neste påfølgende tegn (etter blank) ikke er stor bokstav.
 """
 
-#num0 = r"\d{1,3}(?:\s\d{3}(?!\d))+"
-#"""F.eks. 10 000, tillater ikke punktum.
-#Tokeniserer tall med mellomrom der de forekommer.
-#"""
+num2 = r"\d{1,3}(?:\s\d{3}(?!\d))+"
+"""F.eks. 10 000, tillater ikke punktum.
+Tokeniserer tall med mellomrom der de forekommer.
+"""
 
-num2 = r"\d+(?:\.\d+)+"
+num3 = r"\d+(?:\.\d+)+"
 """Seksjon 3.2.1 eller 2.3999, kan ikke ha sluttpunktum."""
 
-num3 = r"\d+,\d+"
+num4 = r"\d+,\d+"
 """3,5 kan ikke ha sluttpunktum."""
 
-num4 = r"\.\d+"
+num5 = r"\.\d+"
 """Det var .2 prosent økning."""
 
-num5 = r"\d+(?:[-–]\w+)"
+num6 = r"\d+(?:[-–]\w+)"
 """Tallord kombinert med ord, f.eks. 1900-tallet"""
 
 parnum = r"(?<=§\s)\d+(?:[-–—]\d+)*|(?<=§)\d+(?:[-–—]\d+)*"
@@ -410,7 +410,7 @@ parnum = r"(?<=§\s)\d+(?:[-–—]\d+)*|(?<=§)\d+(?:[-–—]\d+)*"
 men også med bindestrek så i § 2-5 blir 2-5 et token.
 """
 
-num = "|".join([parnum, num2, num3, num4, num5, num1])
+num = "|".join([parnum, num2, num3, num4, num5, num6, num1])
 
 
 """Tegn
