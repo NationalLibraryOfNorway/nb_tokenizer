@@ -440,6 +440,12 @@ def tokenize(text: str) -> list:
     tokens = re.findall(regex, text)
     return tokens
 
+def detokenize(tokens: list) -> str:
+    """Takes a list of tokens and returns a detokenized version."""
+    return "".join([
+        token if token in """()!?.,:;[]"'«»""" else f" {token}"
+        for token in tokens
+    ]).strip()
 
 class Tokens:
     """Create a list of tokens from a text with :func:`tokenize`."""
