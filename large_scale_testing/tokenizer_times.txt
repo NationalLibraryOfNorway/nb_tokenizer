@@ -1,0 +1,4 @@
+tid original maalfrid_eval: 0.2159832559999999
+tid ny maalfrid_eval: 0.529890147
+tid original bokselskap: 32.647759377
+tid ny bokselskap: 80.513822097
