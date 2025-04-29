@@ -1,1 +1,5 @@
 **/__pycache__/
+
+large_scale_testing/texts/
+
+testset/test_tokenizer/teste_mini_testsett.ipynb
