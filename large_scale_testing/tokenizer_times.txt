@@ -3,3 +3,4 @@ tid ny maalfrid_eval: 0.529890147 sek.
 tid original bokselskap: 32.647759377 sek.
 tid ny bokselskap: 80.513822097 sek.
 tid original stortinget: 3836.029122901 sek.
+tid ny stortinget: 9322.017216301001 sek.
