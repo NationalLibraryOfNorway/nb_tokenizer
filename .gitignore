@@ -1,1 +1,7 @@
 **/__pycache__/
+.pdm-python
+*.lock
+pylock.toml
+.pdm-build
+dist
+.venv
